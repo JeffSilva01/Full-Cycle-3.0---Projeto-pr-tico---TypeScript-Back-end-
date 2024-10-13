@@ -76,7 +76,7 @@ export class CategoryFakeBuilder<TBuild = any> {
           description: this.callFactory(this._description, index),
           isActive: this.callFactory(this._isActive, index),
           ...(this._createdAt && {
-            created_at: this.callFactory(this._createdAt, index),
+            createdAt: this.callFactory(this._createdAt, index),
           }),
         });
         // category.validate();
@@ -85,7 +85,7 @@ export class CategoryFakeBuilder<TBuild = any> {
     return this.countObjs === 1 ? (categories[0] as any) : categories;
   }
 
-  get category_id() {
+  get categoryId() {
     return this.getValue("category_id");
   }
 
@@ -97,11 +97,11 @@ export class CategoryFakeBuilder<TBuild = any> {
     return this.getValue("description");
   }
 
-  get is_active() {
+  get isActive() {
     return this.getValue("isActive");
   }
 
-  get created_at() {
+  get createdAt() {
     return this.getValue("createdAt");
   }
 
