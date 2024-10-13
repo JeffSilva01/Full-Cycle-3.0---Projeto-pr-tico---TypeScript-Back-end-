@@ -86,7 +86,7 @@ export class CategoryFakeBuilder<TBuild = any> {
   }
 
   get categoryId() {
-    return this.getValue("category_id");
+    return this.getValue("categoryId");
   }
 
   get name() {
