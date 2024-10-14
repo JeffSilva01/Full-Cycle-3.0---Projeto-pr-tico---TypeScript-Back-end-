@@ -49,7 +49,7 @@ export class Category extends Entity {
     Category.validate(this);
   }
 
-  changeDescription(description: string): void {
+  changeDescription(description: string | null): void {
     this.description = description;
     Category.validate(this);
   }
