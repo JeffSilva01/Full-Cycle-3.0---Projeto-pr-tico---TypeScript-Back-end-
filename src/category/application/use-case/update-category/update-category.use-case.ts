@@ -1,9 +1,12 @@
-import { IUseCase } from "../../../shared/application/use-case.interface";
-import { NotFoundError } from "../../../shared/domain/validators/errors/not-found.errr";
-import { Uuid } from "../../../shared/domain/value-objects/uuid.vo";
-import { Category } from "../../domain/category.entity";
-import { ICategoryRepository } from "../../domain/category.repository";
-import { CategoryOutput, CategoryOutputMapper } from "./common/category-output";
+import { IUseCase } from "../../../../shared/application/use-case.interface";
+import { NotFoundError } from "../../../../shared/domain/validators/errors/not-found.errr";
+import { Uuid } from "../../../../shared/domain/value-objects/uuid.vo";
+import { Category } from "../../../domain/category.entity";
+import { ICategoryRepository } from "../../../domain/category.repository";
+import {
+  CategoryOutput,
+  CategoryOutputMapper,
+} from "../common/category-output";
 
 export type UpdateCategoryInput = {
   id: string;
