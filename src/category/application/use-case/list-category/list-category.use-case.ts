@@ -1,15 +1,15 @@
 import {
   PaginationOutput,
   PaginationOutputMapper,
-} from "../../../../shared/application/pagination-output";
-import { IUseCase } from "../../../../shared/application/use-case.interface";
-import { SortDirection } from "../../../../shared/domain/repository/search-params";
+} from "@/shared/application/pagination-output";
+import { IUseCase } from "@/shared/application/use-case.interface";
+import { SortDirection } from "@/shared/domain/repository/search-params";
 import {
   CategoryFilter,
   CategorySearchParams,
   CategorySearchResult,
   ICategoryRepository,
-} from "../../../domain/category.repository";
+} from "@/category/domain/category.repository";
 import {
   CategoryOutput,
   CategoryOutputMapper,
