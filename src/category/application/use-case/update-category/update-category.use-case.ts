@@ -7,13 +7,7 @@ import {
   CategoryOutput,
   CategoryOutputMapper,
 } from "../common/category-output";
-
-export type UpdateCategoryInput = {
-  id: string;
-  name?: string;
-  description?: string;
-  isActive?: boolean;
-};
+import { UpdateCategoryInput } from "./update-category.input";
 
 export type UpdateCategoryOutput = CategoryOutput;
 
