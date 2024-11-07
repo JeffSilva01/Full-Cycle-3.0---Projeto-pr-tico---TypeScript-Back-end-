@@ -1,6 +1,8 @@
 FROM node:20.17.0-slim
 
-USER node 
+RUN npm install -g @nestjs/cli@10.1.17
+
+USER node
 
 WORKDIR /home/node/app
 
