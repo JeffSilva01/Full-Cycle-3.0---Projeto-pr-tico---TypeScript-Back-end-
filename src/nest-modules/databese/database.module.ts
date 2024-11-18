@@ -14,7 +14,7 @@ const models = [CategoryModel];
 
         if (dbVendor === 'sqlite') {
           return {
-            dialect: 'sqlite',
+            dialect: dbVendor,
             host: configService.get('DB_HOST'),
             models,
             logging: configService.get('DB_LOGGING'),
@@ -24,7 +24,7 @@ const models = [CategoryModel];
 
         if (dbVendor === 'mysql') {
           return {
-            dialect: 'mysql',
+            dialect: dbVendor,
             host: configService.get('DB_HOST'),
             port: configService.get('DB_PORT'),
             database: configService.get('DB_DATABASE'),
@@ -44,4 +44,4 @@ const models = [CategoryModel];
     }),
   ],
 })
-export class DatabeseModule {}
+export class DatabaseModule {}
