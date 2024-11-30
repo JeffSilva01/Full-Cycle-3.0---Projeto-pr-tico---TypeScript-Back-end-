@@ -8,6 +8,8 @@ import {
   Delete,
   Inject,
   ParseUUIDPipe,
+  HttpCode,
+  Query,
 } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -18,6 +20,7 @@ import { DeleteCategoryUseCase } from '@/core/category/application/use-case/dele
 import { ListCategoriesUseCase } from '@/core/category/application/use-case/list-category/list-category.use-case';
 import { CategoriesPresenter } from './categories.presenter';
 import { CategoryOutput } from '@/core/category/application/use-case/common/category-output';
+import { SearchCategoriesDto } from './dto/search-categories.dto';
 
 @Controller('categories')
 export class CategoriesController {
@@ -44,10 +47,19 @@ export class CategoriesController {
   }
 
   @Get()
-  findAll() {}
+  async search(@Query() searchparamsDto: SearchCategoriesDto) {
+    const result = await this.listeUseCase.execute(searchparamsDto);
+
+    return;
+  }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {}
+  async findOne(
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
+  ) {
+    const result = await this.getUseCase.execute({ id });
+    return CategoriesController.serialize(result);
+  }
 
   @Patch(':id')
   async update(
@@ -62,8 +74,13 @@ export class CategoriesController {
     return CategoriesController.serialize(result);
   }
 
+  @HttpCode(204)
   @Delete(':id')
-  remove(@Param('id') id: string) {}
+  remove(
+    @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
+  ) {
+    return this.deleteUseCase.execute({ id });
+  }
 
   static serialize(output: CategoryOutput) {
     return new CategoriesPresenter(output);

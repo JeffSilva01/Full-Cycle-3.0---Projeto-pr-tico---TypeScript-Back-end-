@@ -3,9 +3,9 @@ import { SearchResult } from '../domain/repository/search-result';
 export type PaginationOutput<Item = any> = {
   items: Item[];
   total: number;
-  current_page: number;
-  last_page: number;
-  per_page: number;
+  currentPage: number;
+  lastPage: number;
+  perPage: number;
 };
 
 export class PaginationOutputMapper {
@@ -16,9 +16,9 @@ export class PaginationOutputMapper {
     return {
       items,
       total: props.total,
-      current_page: props.current_page,
-      last_page: props.last_page,
-      per_page: props.per_page,
+      currentPage: props.currentPage,
+      lastPage: props.lastPage,
+      perPage: props.perPage,
     };
   }
 }

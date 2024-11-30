@@ -17,9 +17,9 @@ import {
 
 export type ListCategoriesInput = {
   page?: number;
-  per_page?: number;
+  perPage?: number;
   sort?: string | null;
-  sort_dir?: SortDirection | null;
+  sortDir?: SortDirection | null;
   filter?: CategoryFilter | null;
 };
 
