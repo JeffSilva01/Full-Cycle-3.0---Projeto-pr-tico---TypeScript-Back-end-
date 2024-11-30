@@ -5,30 +5,30 @@ import { Uuid } from '../../../../domain/value-objects/uuid.vo';
 import { InMemorySearchableRepository } from '../in-memory.repository';
 
 type StubEntityConstructorProps = {
-  entity_id?: Uuid;
+  entityId?: Uuid;
   name: string;
   price: number;
 };
 
 class StubEntity extends Entity {
-  entity_id: Uuid;
+  id: Uuid;
   name: string;
   price: number;
 
   constructor(props: StubEntityConstructorProps) {
     super();
-    this.entity_id = props.entity_id ?? new Uuid();
+    this.id = props.entityId ?? new Uuid();
     this.name = props.name;
     this.price = +props.price;
   }
 
   get entityId() {
-    return this.entity_id;
+    return this.id;
   }
 
   toJSON(): { id: string } & StubEntityConstructorProps {
     return {
-      id: this.entity_id.id,
+      id: this.entityId.id,
       name: this.name,
       price: this.price,
     };
@@ -163,8 +163,8 @@ describe('InMemorySearchableRepository Unit Tests', () => {
         new SearchResult({
           items: Array(15).fill(entity),
           total: 16,
-          current_page: 1,
-          per_page: 15,
+          currentPage: 1,
+          perPage: 15,
         }),
       );
     });
@@ -179,26 +179,26 @@ describe('InMemorySearchableRepository Unit Tests', () => {
       repository.items = items;
 
       let result = await repository.search(
-        new SearchParams({ page: 1, per_page: 2, filter: 'TEST' }),
+        new SearchParams({ page: 1, perPage: 2, filter: 'TEST' }),
       );
       expect(result).toStrictEqual(
         new SearchResult({
           items: [items[0], items[2]],
           total: 3,
-          current_page: 1,
-          per_page: 2,
+          currentPage: 1,
+          perPage: 2,
         }),
       );
 
       result = await repository.search(
-        new SearchParams({ page: 2, per_page: 2, filter: 'TEST' }),
+        new SearchParams({ page: 2, perPage: 2, filter: 'TEST' }),
       );
       expect(result).toStrictEqual(
         new SearchResult({
           items: [items[3]],
           total: 3,
-          current_page: 2,
-          per_page: 2,
+          currentPage: 2,
+          perPage: 2,
         }),
       );
     });
@@ -213,57 +213,57 @@ describe('InMemorySearchableRepository Unit Tests', () => {
       ];
       const arrange = [
         {
-          search_params: new SearchParams({
+          searchParams: new SearchParams({
             page: 1,
-            per_page: 2,
+            perPage: 2,
             sort: 'name',
           }),
-          search_result: new SearchResult({
+          searchResult: new SearchResult({
             items: [items[1], items[0]],
             total: 5,
-            current_page: 1,
-            per_page: 2,
+            currentPage: 1,
+            perPage: 2,
           }),
         },
         {
-          search_params: new SearchParams({
+          searchParams: new SearchParams({
             page: 2,
-            per_page: 2,
+            perPage: 2,
             sort: 'name',
           }),
-          search_result: new SearchResult({
+          searchResult: new SearchResult({
             items: [items[4], items[2]],
             total: 5,
-            current_page: 2,
-            per_page: 2,
+            currentPage: 2,
+            perPage: 2,
           }),
         },
         {
-          search_params: new SearchParams({
+          searchParams: new SearchParams({
             page: 1,
-            per_page: 2,
+            perPage: 2,
             sort: 'name',
-            sort_dir: 'desc',
+            sortDir: 'desc',
           }),
-          search_result: new SearchResult({
+          searchResult: new SearchResult({
             items: [items[3], items[2]],
             total: 5,
-            current_page: 1,
-            per_page: 2,
+            currentPage: 1,
+            perPage: 2,
           }),
         },
         {
-          search_params: new SearchParams({
+          searchParams: new SearchParams({
             page: 2,
-            per_page: 2,
+            perPage: 2,
             sort: 'name',
-            sort_dir: 'desc',
+            sortDir: 'desc',
           }),
-          search_result: new SearchResult({
+          searchResult: new SearchResult({
             items: [items[4], items[0]],
             total: 5,
-            current_page: 2,
-            per_page: 2,
+            currentPage: 2,
+            perPage: 2,
           }),
         },
       ];
@@ -274,9 +274,9 @@ describe('InMemorySearchableRepository Unit Tests', () => {
 
       test.each(arrange)(
         'when value is %j',
-        async ({ search_params, search_result }) => {
-          const result = await repository.search(search_params);
-          expect(result).toStrictEqual(search_result);
+        async ({ searchParams, searchResult }) => {
+          const result = await repository.search(searchParams);
+          expect(result).toStrictEqual(searchResult);
         },
       );
     });
@@ -295,29 +295,29 @@ describe('InMemorySearchableRepository Unit Tests', () => {
         {
           params: new SearchParams({
             page: 1,
-            per_page: 2,
+            perPage: 2,
             sort: 'name',
             filter: 'TEST',
           }),
           result: new SearchResult({
             items: [items[2], items[4]],
             total: 3,
-            current_page: 1,
-            per_page: 2,
+            currentPage: 1,
+            perPage: 2,
           }),
         },
         {
           params: new SearchParams({
             page: 2,
-            per_page: 2,
+            perPage: 2,
             sort: 'name',
             filter: 'TEST',
           }),
           result: new SearchResult({
             items: [items[0]],
             total: 3,
-            current_page: 2,
-            per_page: 2,
+            currentPage: 2,
+            perPage: 2,
           }),
         },
       ];

@@ -81,19 +81,19 @@ export abstract class InMemorySearchableRepository<
     const itemsSorted = this.applySort(
       itemsFiltered,
       props.sort,
-      props.sort_dir,
+      props.sortDir,
     );
     const itemsPaginated = this.applyPaginate(
       itemsSorted,
       props.page,
-      props.per_page,
+      props.perPage,
     );
 
     return new SearchResult({
       items: itemsPaginated,
       total: itemsFiltered.length,
-      current_page: props.page,
-      per_page: props.per_page,
+      currentPage: props.page,
+      perPage: props.perPage,
     });
   }
 
@@ -105,18 +105,18 @@ export abstract class InMemorySearchableRepository<
   protected applyPaginate(
     itmes: E[],
     page: SearchParams['page'],
-    per_page: SearchParams['per_page'],
+    perPage: SearchParams['perPage'],
   ): E[] {
-    const start = (page - 1) * per_page;
-    const end = start + per_page;
+    const start = (page - 1) * perPage;
+    const end = start + perPage;
     return itmes.slice(start, end);
   }
 
   protected applySort(
     items: E[],
     sort: string | null,
-    dort_dir: SortDirection | null,
-    custom_getter?: (sort: string, item: E) => any,
+    dortDir: SortDirection | null,
+    customGetter?: (sort: string, item: E) => any,
   ) {
     if (!sort || !this.sortableFields.includes(sort)) {
       return items;
@@ -124,16 +124,16 @@ export abstract class InMemorySearchableRepository<
 
     return [...items].sort((a, b) => {
       //@ts-ignore
-      const aValue = custom_getter ? custom_getter(sort, a) : a[sort];
+      const aValue = customGetter ? customGetter(sort, a) : a[sort];
       //@ts-ignore
-      const bValue = custom_getter ? custom_getter(sort, b) : b[sort];
+      const bValue = customGetter ? customGetter(sort, b) : b[sort];
 
       if (aValue > bValue) {
-        return dort_dir === 'asc' ? 1 : -1;
+        return dortDir === 'asc' ? 1 : -1;
       }
 
       if (aValue < bValue) {
-        return dort_dir === 'asc' ? -1 : 1;
+        return dortDir === 'asc' ? -1 : 1;
       }
 
       return 0;
