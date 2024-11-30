@@ -29,6 +29,9 @@ importers:
       chance:
         specifier: ^1.1.12
         version: 1.1.12
+      class-transform:
+        specifier: ^0.7.0
+        version: 0.7.0
       class-validator:
         specifier: ^0.14.1
         version: 0.14.1
@@ -1362,6 +1365,9 @@ packages:
   chrome-trace-event@1.0.4:
     resolution: {integrity: sha512-rNjApaLzuwaOTjCiT8lSDdGN1APCiqkChLMJxJPWLunPAt5fy8xgU9/jNOchV84wfIxrA0lRQB7oCT8jrn/wrQ==}
     engines: {node: '>=6.0'}
+
+  class-transform@0.7.0:
+    resolution: {integrity: sha512-j5O1TkgxsR836BOgyG83i5gKH3yaqdxMIbwviV3qJpcjGh1Vfil1CjtXn8RHgvtLvbosUutoewa+RA3Qty4SFA==}
 
   class-validator@0.14.1:
     resolution: {integrity: sha512-2VEG9JICxIqTpoK1eMzZqaV+u/EiwEJkMGzTrZf6sU/fwsnOITVgYJ8yojSy6CaXtO9V0Cc6ZQZ8h8m4UBuLwQ==}
@@ -4706,6 +4712,8 @@ snapshots:
   chownr@2.0.0: {}
 
   chrome-trace-event@1.0.4: {}
+
+  class-transform@0.7.0: {}
 
   class-validator@0.14.1:
     dependencies:
