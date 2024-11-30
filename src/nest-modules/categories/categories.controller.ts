@@ -18,7 +18,10 @@ import { UpdateCategoryUseCase } from '@/core/category/application/use-case/upda
 import { GetCategoryUseCase } from '@/core/category/application/use-case/get-category/get-category.use-case';
 import { DeleteCategoryUseCase } from '@/core/category/application/use-case/delete-category/delete-category.use-case';
 import { ListCategoriesUseCase } from '@/core/category/application/use-case/list-category/list-category.use-case';
-import { CategoriesPresenter } from './categories.presenter';
+import {
+  CategoriesCollectionPresenter,
+  CategoryPresenter,
+} from './categories.presenter';
 import { CategoryOutput } from '@/core/category/application/use-case/common/category-output';
 import { SearchCategoriesDto } from './dto/search-categories.dto';
 
@@ -50,7 +53,7 @@ export class CategoriesController {
   async search(@Query() searchparamsDto: SearchCategoriesDto) {
     const result = await this.listeUseCase.execute(searchparamsDto);
 
-    return;
+    return new CategoriesCollectionPresenter(result);
   }
 
   @Get(':id')
@@ -58,6 +61,7 @@ export class CategoriesController {
     @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
   ) {
     const result = await this.getUseCase.execute({ id });
+
     return CategoriesController.serialize(result);
   }
 
@@ -83,6 +87,6 @@ export class CategoriesController {
   }
 
   static serialize(output: CategoryOutput) {
-    return new CategoriesPresenter(output);
+    return new CategoryPresenter(output);
   }
 }

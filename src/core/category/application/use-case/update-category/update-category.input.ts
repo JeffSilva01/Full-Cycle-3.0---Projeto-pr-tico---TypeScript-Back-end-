@@ -16,7 +16,7 @@ export type UpdateCategoryInputConstructorProps = {
 export class UpdateCategoryInput {
   @IsNotEmpty()
   @IsString()
-  id!: string;
+  id: string;
 
   @IsString()
   @IsOptional()
