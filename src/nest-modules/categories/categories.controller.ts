@@ -40,7 +40,7 @@ export class CategoriesController {
   private deleteUseCase: DeleteCategoryUseCase;
 
   @Inject(ListCategoriesUseCase)
-  private listeUseCase: ListCategoriesUseCase;
+  private listUseCase: ListCategoriesUseCase;
 
   @Post()
   async create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -51,7 +51,7 @@ export class CategoriesController {
 
   @Get()
   async search(@Query() searchparamsDto: SearchCategoriesDto) {
-    const result = await this.listeUseCase.execute(searchparamsDto);
+    const result = await this.listUseCase.execute(searchparamsDto);
 
     return new CategoriesCollectionPresenter(result);
   }
