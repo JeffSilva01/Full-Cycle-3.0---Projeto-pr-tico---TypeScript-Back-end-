@@ -6,6 +6,7 @@ export default defineConfig({
   test: {
     globals: true,
     root: './',
+    include: ['src/**/*.{spec,test,int-spec}.{ts,tsx}'],
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@/category/*': path.resolve(__dirname, './src/core/category/*'),
